@@ -7,7 +7,7 @@ import Contact from './pages/Contact';
 
 const App: React.FC = () => {
   return (
-    <Router>
+    <Router basename='/portifolio'> {/* Adicione o basename aqui */}
       <Header />
       <main className="main-content">
         <Routes>
