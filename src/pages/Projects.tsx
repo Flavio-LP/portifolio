@@ -12,11 +12,11 @@ interface Project {
 const Projects: FC = () => {
   const projects: Project[] = [
     {
-      title: "Portfólio",
-      description: "Meu site pessoal desenvolvido com React e TypeScript",
-      image: "/portfolio.jpg",
-      link: "#",
-      technologies: ["React", "TypeScript", "Vite"]
+      title: "Pokedex",
+      description: "Web app de pokedex utilizando a API do Pokemon.",
+      image: "https://raw.githubusercontent.com/PokeAPI/media/master/logo/pokeapi_256.png",
+      link: "https://pokedex-ror.up.railway.app/",
+      technologies: ["Ruby on Rails", "Graphql", "HTML", "CSS"],
     },
     // Adicione mais projetos
   ];

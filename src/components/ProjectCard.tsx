@@ -18,7 +18,7 @@ const ProjectCard: FC<ProjectCardProps> = ({
   return (
     <div className="project-card">
       <img src={image} alt={title} className="project-image" />
-      <h3>{title}</h3>
+      <h3>{}</h3>
       <p>{description}</p>
       {technologies.length > 0 && (
         <div className="tech-stack">
