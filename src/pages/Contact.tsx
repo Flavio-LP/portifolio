@@ -1,68 +1,34 @@
-import { FC, useState, FormEvent } from 'react';
+import React from 'react';
+import './css/index.css';
 
-const Contact: FC = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
-
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    // Lógica para enviar o formulário
-    console.log('Formulário enviado:', formData);
-    setFormData({ name: '', email: '', message: '' });
-  };
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
+function Contact() {
   return (
-    <section className="contact-container">
-      <h2>Entre em Contato</h2>
-      <form onSubmit={handleSubmit} className="contact-form">
-        <div className="form-group">
-          <label htmlFor="name">Nome:</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
+    <div className="contact-header">
+      <h1>Entre em Contato</h1>
+      <p>
+        Olá, meu nome é <strong>Flávio Leandro Pirola</strong>. Estou sempre aberto a novas oportunidades e colaborações. 
+        Se você tem alguma dúvida ou gostaria de discutir um projeto, não hesite em entrar em contato!
+      </p>
+      <p>Você pode me encontrar nas redes sociais ou enviar um e-mail diretamente.</p>
 
-        <div className="form-group">
-          <label htmlFor="email">Email:</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
+      <section className="contact-container">
+        <h2>Entre em Contato</h2>
+        <div className="contact-buttons">
+          {/* Botão para E-mail */}
+          <a href="mailto:flavio.lpirola@gmail.com" className="contact-button email-button">
+            <img src="https://imgs.search.brave.com/jFmFDrCTPMA8z45brWdMcu02rHvnwxWsV5_KaxLCu0A/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tYWls/bWV0ZW9yLmNvbS9s/b2dvcy9hc3NldHMv/UE5HL0dtYWlsX0xv/Z29fMTI4cHgucG5n" alt="Ícone de E-mail" />
+            <span>flavio.lpirola@gmail.com</span>
+          </a>
 
-        <div className="form-group">
-          <label htmlFor="message">Mensagem:</label>
-          <textarea
-            id="message"
-            name="message"
-            value={formData.message}
-            onChange={handleInputChange}
-            rows={5}
-            required
-          />
+          {/* Botão para GitHub */}
+          <a href="https://github.com/Flavio-LP" target="_blank" rel="noopener noreferrer" className="contact-button github-button">
+            <img src="/assets/github.svg" alt="Ícone do GitHub" />
+            <span>GitHub</span>
+          </a>
         </div>
-
-        <button type="submit" className="btn btn-submit">Enviar Mensagem</button>
-      </form>
-    </section>
+      </section>
+    </div>
   );
-};
+}
 
 export default Contact;

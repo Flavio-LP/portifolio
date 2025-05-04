@@ -9,13 +9,6 @@ const Header: FC = () => {
       <nav className="nav-container">
         <Link to="/" className="logo">Meu Portfólio</Link>
         
-        <button 
-          className="menu-button"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          aria-label="Toggle navigation menu"
-        >
-          ☰
-        </button>
 
         <div className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
           <Link to="/" onClick={() => setIsMenuOpen(false)}>Home</Link>
