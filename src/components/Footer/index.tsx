@@ -20,6 +20,7 @@ const Footer: FC = () => {
         <div className="footer-section">
           <h4>Redes Sociais</h4>
           <div className="social-links">
+            
             <a href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub</a>
             <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
             <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a>

@@ -23,7 +23,12 @@ function Contact() {
           {/* Botão para GitHub */}
           <a href="https://github.com/Flavio-LP" target="_blank" rel="noopener noreferrer" className="contact-button github-button">
             <img src="/assets/github.svg" alt="Ícone do GitHub" />
-            <span>GitHub</span>
+            <span>Flavio-LP</span>
+          </a>
+          {/* Botão para LinkedIn */}
+          <a href="https://www.linkedin.com/in/flavio-pirola/" target="_blank" rel="noopener noreferrer" className="contact-button github-button">
+            <img src="http://www.w3.org/2000/svg" alt="Ícone do GitHub" />
+            <span>Flavio Pirola</span>
           </a>
         </div>
       </section>

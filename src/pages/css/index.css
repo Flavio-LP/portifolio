@@ -1,7 +1,15 @@
-
+.main-content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 /* Container principal */
 .contact-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   background-color: #ffffff;
   padding: 20px;
@@ -52,21 +60,14 @@
   transition: background-color 0.3s ease;
 }
 
-.email-button {
+.email-button, .github-button, .linkedin-button {
   background-color: #007bff;
 }
 
-.email-button:hover {
+.email-button:hover, .github-button:hover, .linkedin-button:hover {
   background-color: #0056b3;
 }
 
-.github-button {
-  background-color: #333;
-}
-
-.github-button:hover {
-  background-color: #555;
-}
 
 /* Ícones */
 .contact-button img {

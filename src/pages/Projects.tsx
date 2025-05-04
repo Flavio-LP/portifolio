@@ -27,6 +27,8 @@ const Projects: FC = () => {
       link: "/",
       technologies: ["Ruby on Rails", "HTML", "CSS"],
     },
+
+
     // Adicione mais projetos
   ];
 
