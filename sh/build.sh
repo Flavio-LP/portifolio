@@ -1,11 +1,15 @@
+echo "Instalando dependências..."
+npm install 
+
 #!/bin/bash
 echo "Construindo a aplicação..."
 npm run build
 
+echo "Copiando arquivos para o servidor..."
 # Passo 3: Configurar o diretório de deploy
-sudo cp -R /dist/* /var/www/html/portifolio
+sudo cp -R dist/* /var/www/html/portifolio
 
-
+echo "Ajustando permissoes..."
 # Libera acesso ao diretório de deploy
 sudo chmod -R 755 /var/www/html/portifolio
 sudo chown -R www-data:www-data /var/www/html/portifolio
@@ -138,6 +142,7 @@ server {
 }
 EOL
 
+echo "Recarregando Nginx..."
 # Reload Nginx
 sudo systemctl reload nginx
 
