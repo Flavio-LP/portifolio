@@ -46,8 +46,8 @@ const Projects: FC = () => {
       description: "Web app para gerenciar livros, com funcionalidades de CRUD.",
       image: "/portifolio/public/assets/c26016c9-87b4-4cf1-a6fd-8333ee38a00e.png",
       link_projeto: "/portifolio/projects",
-      link_codigo: "/",
-      technologies: ["Ruby on Rails", "HTML", "CSS"],
+      link_codigo: "https://github.com/Flavio-LP/library_blog",
+      technologies: ["Ruby on Rails", "HTML", "CSS", "SQLite"],
     },
     
 
@@ -56,8 +56,8 @@ const Projects: FC = () => {
       description: "Web app para realizar reservas em um restaurante",
       image: "/portifolio/public/assets/c26016c9-87b4-4cf1-a6fd-8333ee38a00e.png",
       link_projeto: "/portifolio/projects",
-      link_codigo: "/",
-      technologies: ["Ruby on Rails", "HTML", "CSS"],
+      link_codigo: "https://github.com/Flavio-LP/app_reservations",
+      technologies: ["Ruby on Rails", "HTML", "CSS", "PostreSQL"],
     },
 
 
