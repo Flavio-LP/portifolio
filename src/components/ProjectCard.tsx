@@ -29,12 +29,12 @@ const ProjectCard: FC<ProjectCardProps> = ({
           ))}
         </div>
       )}
-      <div>
+      <div className="contact-buttons">
         <a 
           href={link_projeto} 
           target="_blank" 
           rel="noopener noreferrer"
-          className="project-link"
+          className="contact-button link"
         >
           Ver Projeto
         </a>
@@ -43,7 +43,7 @@ const ProjectCard: FC<ProjectCardProps> = ({
         href={link_codigo} 
         target="_blank" 
         rel="noopener noreferrer"
-        className="project-link"
+        className="contact-button link"
         >
           Ver Código
         </a>
