@@ -148,6 +148,14 @@ body {
   font-size: 0.8rem;
 }
 
+.project-card img {
+  width: auto; /* A largura será sempre 100% do contêiner pai */
+  height: auto; /* A altura será ajustada automaticamente para manter a proporção */
+  max-height: 200px; /* Define uma altura máxima para evitar imagens muito grandes */
+  object-fit: cover; /* Garante que a imagem seja cortada proporcionalmente para preencher o espaço */
+  border-radius: 10px; /* Adiciona bordas arredondadas */
+}
+
 /* Footer */
 
 
@@ -176,4 +184,5 @@ body {
     background-color: var(--dark-color);
     padding: 1rem;
   }
+
 }

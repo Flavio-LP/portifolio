@@ -1,4 +1,3 @@
-import React from 'react';
 import './css/index.css';
 
 function Contact() {
@@ -22,17 +21,20 @@ function Contact() {
 
           {/* Botão para GitHub */}
           <a href="https://github.com/Flavio-LP" target="_blank" rel="noopener noreferrer" className="contact-button github-button">
-            <img src="/assets/github.svg" alt="Ícone do GitHub" />
+            <img src="/portifolio/public/assets/github.png" alt="Ícone do GitHub" />
             <span>Flavio-LP</span>
           </a>
           {/* Botão para LinkedIn */}
           <a href="https://www.linkedin.com/in/flavio-pirola/" target="_blank" rel="noopener noreferrer" className="contact-button github-button">
-            <img src="http://www.w3.org/2000/svg" alt="Ícone do GitHub" />
+            <img src="https://static.vecteezy.com/system/resources/previews/018/930/480/non_2x/linkedin-logo-linkedin-icon-transparent-free-png.png" alt="Ícone do GitHub" />
             <span>Flavio Pirola</span>
           </a>
         </div>
       </section>
     </div>
+
+
+
   );
 }
 

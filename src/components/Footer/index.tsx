@@ -21,9 +21,9 @@ const Footer: FC = () => {
           <h4>Redes Sociais</h4>
           <div className="social-links">
             
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub</a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a>
+            <a href="https://github.com/Flavio-LP" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://www.linkedin.com/in/flavio-pirola/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://www.instagram.com/flavio.pirola/" target="_blank" rel="noopener noreferrer">Instagram</a>
           </div>
         </div>
       </div>

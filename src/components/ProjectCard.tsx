@@ -4,7 +4,8 @@ interface ProjectCardProps {
   title: string;
   description: string;
   image: string;
-  link: string;
+  link_projeto: string;
+  link_codigo: string;
   technologies?: string[]; // Prop opcional
 }
 
@@ -12,7 +13,8 @@ const ProjectCard: FC<ProjectCardProps> = ({
   title, 
   description, 
   image, 
-  link,
+  link_projeto,
+  link_codigo,
   technologies = []
 }) => {
   return (
@@ -27,14 +29,26 @@ const ProjectCard: FC<ProjectCardProps> = ({
           ))}
         </div>
       )}
-      <a 
-        href={link} 
+      <div>
+        <a 
+          href={link_projeto} 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="project-link"
+        >
+          Ver Projeto
+        </a>
+
+        <a 
+        href={link_codigo} 
         target="_blank" 
         rel="noopener noreferrer"
         className="project-link"
-      >
-        Ver Projeto
-      </a>
+        >
+          Ver Código
+        </a>
+
+      </div>
     </div>
   );
 };

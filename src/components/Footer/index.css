@@ -26,7 +26,8 @@
     flex-direction: column;
     gap: 0.5rem;
   }
-  
+
+
 
   .footer-section h4 {
     margin-bottom: 1rem;
@@ -42,6 +43,15 @@
   .footer-links a {
     color: var(--light-color);
     text-decoration: none;
+  }
+
+  .social-links a {
+    color: var(--light-color);
+    text-decoration: none;
+  }
+
+  .social-links a:hover {
+    color: var(--primary-color);
   }
   
   .footer-links a:hover {

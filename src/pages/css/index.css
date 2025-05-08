@@ -22,7 +22,7 @@
 /* Títulos */
 .contact-header h1 {
   font-size: 2rem;
-  color: #007bff;
+  color: #27ae60;
   margin-bottom: 10px;
 }
 
@@ -61,12 +61,15 @@
 }
 
 .email-button, .github-button, .linkedin-button {
-  background-color: #007bff;
+  background-color: #2ecc71;
 }
 
 .email-button:hover, .github-button:hover, .linkedin-button:hover {
-  background-color: #0056b3;
+  background-color: #2ecc71;
 }
+
+/*--primary-color: #2ecc71;
+--secondary-color: #27ae60;*/
 
 
 /* Ícones */

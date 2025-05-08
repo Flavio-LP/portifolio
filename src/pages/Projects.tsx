@@ -6,25 +6,57 @@ interface Project {
   title: string;
   description: string;
   image: string;
-  link: string;
+  link_projeto: string;
+  link_codigo: string;
   technologies?: string[];
 }
 
 const Projects: FC = () => {
   const projects: Project[] = [
+
+    {
+      title: "Monitor de Cotação de Moedas",
+      description: "Web app de gráficos de monitoramento cotação de moedas nos últimos 30 dias.",
+      image: "/portifolio/public/assets/03c333ba-d9e5-4b81-ae4e-368a115f9f28.png",
+      link_projeto: "https://realtimecoinmonitor-production.up.railway.app/",
+      link_codigo: "https://github.com/Flavio-LP/realtime_coin_monitor",
+      technologies: ["Ruby on Rails", "HTML", "CSS", "Chartkick"],
+    },
+
+    {
+      title: "Carros - CRUD",
+      description: "Web app para gerenciar carros, com funcionalidades de CRUD.",
+      image: "/portifolio/public/assets/302fa030-72c3-4c3b-89f3-da9224ba5355.png",
+      link_projeto: "https://carscrud-production.up.railway.app/",
+      link_codigo: "https://github.com/Flavio-LP/cars_crud",
+      technologies: ["Ruby on Rails", "HTML", "CSS", "Bootstrap", "PostgreSQL"],
+    },
+
     {
       title: "Pokedex",
       description: "Web app de pokedex utilizando a API do Pokemon.",
       image: "https://raw.githubusercontent.com/PokeAPI/media/master/logo/pokeapi_256.png",
-      link: "https://pokedex-ror.up.railway.app/",
+      link_projeto: "https://pokedex-ror.up.railway.app/",
+      link_codigo: "https://github.com/Flavio-LP/pokedex_ROR",
       technologies: ["Ruby on Rails", "Graphql", "HTML", "CSS"],
     },
 
     {
+      title: "Blog de Leitura de livros",
+      description: "Web app para gerenciar livros, com funcionalidades de CRUD.",
+      image: "/portifolio/public/assets/c26016c9-87b4-4cf1-a6fd-8333ee38a00e.png",
+      link_projeto: "/portifolio/projects",
+      link_codigo: "/",
+      technologies: ["Ruby on Rails", "HTML", "CSS"],
+    },
+    
+
+    {
       title: "Reservas de Restaurante",
       description: "Web app para realizar reservas em um restaurante",
-      image: "",
-      link: "/",
+      image: "/portifolio/public/assets/c26016c9-87b4-4cf1-a6fd-8333ee38a00e.png",
+      link_projeto: "/portifolio/projects",
+      link_codigo: "/",
       technologies: ["Ruby on Rails", "HTML", "CSS"],
     },
 
