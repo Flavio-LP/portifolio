@@ -1,5 +1,6 @@
 import { FC } from 'react';
-import ProjectCard from '../components/ProjectCard';
+import ProjectCard from '../../components/ProjectCard/ProjectCard';
+import './index.css'
 
 
 interface Project {
