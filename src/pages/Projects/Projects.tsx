@@ -45,12 +45,29 @@ const Projects: FC = () => {
     {
       title: "Blog de Leitura de livros",
       description: "Web app para gerenciar livros, com funcionalidades de CRUD.",
-      image: "/portifolio/public/assets/c26016c9-87b4-4cf1-a6fd-8333ee38a00e.png",
+      image: "/portifolio/public/assets/302fa030-72c3-4c3b-89f3-da9224ba5355.png",
       link_projeto: "/portifolio/projects",
       link_codigo: "https://github.com/Flavio-LP/library_blog",
       technologies: ["Ruby on Rails", "HTML", "CSS", "SQLite"],
     },
+
+    {
+      title: "SPA - Api viewer",
+      description: "SPA para visualizar as APIs públicas disponíveis.",
+      image: "/portifolio/public/assets/301418905_519807193481468_1412506637321039011_n.png",
+      link_projeto: "https://vm-dev.vps-kinghost.net/spa_stimulus",
+      link_codigo: "https://github.com/Flavio-LP/spa_stimulus",
+      technologies: ["ROR", "HTML", "JS", "Bootstrap", "PostgreSQL"],
+    },
     
+    {
+      title: "API - Ruby on rails ",
+      description: "Api básica construída com Ruby on Rails para consumo no projeto SPA - Api viewer.",
+      image: "/portifolio/public/assets/3234207.png",
+      link_projeto: "https://vm-dev.vps-kinghost.net/api/",
+      link_codigo: "https://github.com/Flavio-LP/api_stimulus",
+      technologies: ["Ruby on Rails", "HTML", "PostgreSQL"],
+    },
 
     {
       title: "Reservas de Restaurante",
