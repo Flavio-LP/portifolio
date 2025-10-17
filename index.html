@@ -3,30 +3,85 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Ruby responsivo em tela cheia</title>
+<title>Meu Portfólio - Ruby Developer</title>
 <style>
-  /* Layout de tela cheia, sem rolagem */
-  html, body {
-    height: 100%;
+  /* Reset e Base */
+  * {
     margin: 0;
-    overflow: hidden;
-    background: #0f0f12;
-    color: #eaeaea;
-    font: 14px/1.4 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    padding: 0;
+    box-sizing: border-box;
   }
 
-  /* Container que sempre ocupa a viewport */
-  .viewport {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: #0f0f12;
+    color: #eaeaea;
+    font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* Navegação Fixa */
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(15, 15, 18, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 0, 64, 0.1);
+  }
+
+  nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    list-style: none;
+    padding: 1.2rem 0;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  nav a {
+    color: #eaeaea;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+    position: relative;
+  }
+
+  nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #D61E16, #E33A2E);
+    transition: width 0.3s;
+  }
+
+  nav a:hover {
+    color: #E33A2E;
+  }
+
+  nav a:hover::after {
+    width: 100%;
+  }
+
+  /* Seção Hero (Ruby) */
+  .hero {
     width: 100vw;
     height: 100vh;
     position: relative;
     display: grid;
     place-items: center;
+    overflow: hidden;
   }
 
-  /* O rubi escala de forma responsiva mantendo proporção */
   .ruby-svg {
-    /* usa o menor entre largura e altura da tela para não cortar em layouts wide/tall */
     width: min(84vmin, 92vw);
     height: auto;
     display: block;
@@ -35,14 +90,16 @@
     filter: drop-shadow(0 18px 60px rgba(255,0,64,.22));
   }
 
-  /* Glow de fundo ocupa a viewport e pulsa */
   .bg-glow {
-    position: absolute; inset: 0;
-    display: grid; place-items: center;
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
     pointer-events: none;
   }
-  .bg-glow::before{
-    content:"";
+
+  .bg-glow::before {
+    content: "";
     width: min(90vmin, 96vw);
     height: min(60vmin, 64vh);
     border-radius: 50%;
@@ -51,11 +108,15 @@
     animation: pulse 2.8s ease-in-out infinite;
   }
 
-  /* Highlight “scan” ajustado para qualquer tela */
   .scan {
-    position: absolute; inset: 0; display: grid; place-items: center;
-    pointer-events: none; mix-blend-mode: screen;
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    pointer-events: none;
+    mix-blend-mode: screen;
   }
+
   .scan > div {
     width: 180%;
     height: 20%;
@@ -71,126 +132,1014 @@
     filter: blur(.5px);
   }
 
-  /* Faíscas orbitam dentro da viewport (opcional) */
   .spark {
-    position: absolute; top: 50%; left: 50%;
-    width: 6px; height: 6px; border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
     background: radial-gradient(circle, #fff, rgba(255,255,255,0));
-    transform-origin: -22vmin -22vmin; /* baseado em vmin para escalar junto */
+    transform-origin: -22vmin -22vmin;
     animation: orbit 4.6s linear infinite;
-    opacity: .8; filter: blur(.2px); pointer-events: none;
+    opacity: .8;
+    filter: blur(.2px);
+    pointer-events: none;
   }
-  .spark.s2 { transform-origin: -30vmin -30vmin; width: 5px; height: 5px; animation-duration: 6.2s; opacity: .7; }
-  .spark.s3 { transform-origin: -38vmin -38vmin; width: 4px; height: 4px; animation-duration: 7.8s; opacity: .6; }
+
+  .spark.s2 {
+    transform-origin: -30vmin -30vmin;
+    width: 5px;
+    height: 5px;
+    animation-duration: 6.2s;
+    opacity: .7;
+  }
+
+  .spark.s3 {
+    transform-origin: -38vmin -38vmin;
+    width: 4px;
+    height: 4px;
+    animation-duration: 7.8s;
+    opacity: .6;
+  }
+
+  .hero-content {
+    position: absolute;
+    bottom: 15%;
+    text-align: center;
+    z-index: 10;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #fff, #E33A2E);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-content p {
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    color: #d9d9d9;
+    margin-bottom: 2rem;
+  }
+
+  .cta-button {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: linear-gradient(135deg, #D61E16, #E33A2E);
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 20px rgba(255, 0, 64, 0.3);
+  }
+
+  .cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(255, 0, 64, 0.5);
+  }
+
+  /* Seções Gerais */
+  section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+  }
+
+  section h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  section h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, #D61E16, #E33A2E);
+    border-radius: 2px;
+  }
+
+  /* Sobre Mim */
+  .about-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .about-image {
+    width: 100%;
+    max-width: 300px;
+    height: 300px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #D61E16, #E33A2E);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8rem;
+    box-shadow: 0 10px 40px rgba(255, 0, 64, 0.3);
+    margin: 0 auto;
+  }
+
+  .about-text p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #d9d9d9;
+    margin-bottom: 1rem;
+  }
+
+  /* Projetos */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .project-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 2rem;
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    cursor: pointer;
+  }
+
+  .project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(255, 0, 64, 0.2);
+    border-color: rgba(227, 58, 46, 0.5);
+  }
+
+  .project-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #D61E16, #E33A2E);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .project-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #fff;
+  }
+
+  .project-card p {
+    color: #d9d9d9;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .tag {
+    padding: 0.3rem 0.8rem;
+    background: rgba(227, 58, 46, 0.2);
+    border: 1px solid rgba(227, 58, 46, 0.3);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: #E33A2E;
+  }
+
+  .project-links {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .project-link {
+    padding: 0.6rem 1.2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: #eaeaea;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+  }
+
+  .project-link:hover {
+    background: linear-gradient(135deg, #D61E16, #E33A2E);
+    border-color: transparent;
+  }
+
+  /* Habilidades */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .skill-category {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 2rem;
+  }
+
+  .skill-category h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    color: #E33A2E;
+  }
+
+  .skill-item {
+    margin-bottom: 1.5rem;
+  }
+
+  .skill-name {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+  }
+
+  .skill-bar {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .skill-progress {
+    height: 100%;
+    background: linear-gradient(90deg, #D61E16, #E33A2E);
+    border-radius: 10px;
+    transition: width 1s ease-out;
+  }
+
+  /* Contato */
+  .contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    transition: all 0.3s;
+  }
+
+  .contact-item:hover {
+    border-color: rgba(227, 58, 46, 0.5);
+    transform: translateX(10px);
+  }
+
+  .contact-icon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #D61E16, #E33A2E);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .contact-details h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .contact-details p {
+    color: #d9d9d9;
+    font-size: 0.95rem;
+  }
+
+  .contact-details a {
+    color: #E33A2E;
+    text-decoration: none;
+  }
+
+  .contact-details a:hover {
+    text-decoration: underline;
+  }
+
+  /* Formulário */
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .form-group label {
+    font-weight: 500;
+    color: #eaeaea;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: #eaeaea;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: all 0.3s;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: #E33A2E;
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .form-group textarea {
+    resize: vertical;
+    min-height: 150px;
+  }
+
+  .submit-button {
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, #D61E16, #E33A2E);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 20px rgba(255, 0, 64, 0.3);
+  }
+
+  .submit-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(255, 0, 64, 0.5);
+  }
+
+  /* Footer */
+  footer {
+    background: rgba(15, 15, 18, 0.95);
+    border-top: 1px solid rgba(255, 0, 64, 0.1);
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .social-link {
+    width: 45px;
+    height: 45px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #eaeaea;
+    text-decoration: none;
+    font-size: 1.3rem;
+    transition: all 0.3s;
+  }
+
+  .social-link:hover {
+    background: linear-gradient(135deg, #D61E16, #E33A2E);
+    border-color: transparent;
+    transform: translateY(-5px);
+  }
+
+  footer p {
+    color: #d9d9d9;
+    font-size: 0.95rem;
+  }
 
   /* Animações */
-  @keyframes pulse { 0%,100%{opacity:.6; transform:scale(.94)} 50%{opacity:1; transform:scale(1.06)} }
+  @keyframes pulse {
+    0%, 100% {
+      opacity: .6;
+      transform: scale(.94);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.06);
+    }
+  }
+
   @keyframes scan {
-    0%   { transform: rotate(-18deg) translateX(-120%) translateY(-5%); opacity: 0; }
-    15%  { opacity: .25 }
-    50%  { opacity: .35 }
-    100% { transform: rotate(-18deg) translateX(120%) translateY(5%); opacity: 0; }
+    0% {
+      transform: rotate(-18deg) translateX(-120%) translateY(-5%);
+      opacity: 0;
+    }
+    15% {
+      opacity: .25;
+    }
+    50% {
+      opacity: .35;
+    }
+    100% {
+      transform: rotate(-18deg) translateX(120%) translateY(5%);
+      opacity: 0;
+    }
   }
-  @keyframes orbit { to { transform: rotate(360deg); } }
+
+  @keyframes orbit {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
   @keyframes tilt {
-    0%  { transform: rotateX(0deg) rotateY(0deg); }
-    25% { transform: rotateX(6deg) rotateY(-6deg); }
-    50% { transform: rotateX(0deg) rotateY(0deg); }
-    75% { transform: rotateX(-6deg) rotateY(6deg); }
-    100%{ transform: rotateX(0deg) rotateY(0deg); }
+    0% {
+      transform: rotateX(0deg) rotateY(0deg);
+    }
+    25% {
+      transform: rotateX(6deg) rotateY(-6deg);
+    }
+    50% {
+      transform: rotateX(0deg) rotateY(0deg);
+    }
+    75% {
+      transform: rotateX(-6deg) rotateY(6deg);
+    }
+    100% {
+      transform: rotateX(0deg) rotateY(0deg);
+    }
   }
 
-  /* Pequenos ajustes para telas muito altas ou muito baixas */
-  @media (max-aspect-ratio: 3/4) { /* celular alto */
-    .ruby-svg { width: min(86vmin, 88vw); }
-    .bg-glow::before { width: min(92vmin, 96vw); height: min(64vmin, 70vh); }
-  }
-  @media (min-aspect-ratio: 16/9) { /* monitor wide */
-    .ruby-svg { width: min(60vmin, 50vh); }
-    .bg-glow::before { width: min(62vmin, 52vh); height: min(38vmin, 34vh); }
+  /* Responsivo */
+  @media (max-width: 768px) {
+    nav ul {
+      gap: 1rem;
+      padding: 1rem 0;
+      flex-wrap: wrap;
+    }
+
+    .about-content,
+    .contact-container {
+      grid-template-columns: 1fr;
+    }
+
+    .hero-content {
+      bottom: 10%;
+      padding: 0 1rem;
+    }
+
+    section {
+      padding: 3rem 1rem;
+    }
+
+    .projects-grid,
+    .skills-grid {
+      grid-template-columns: 1fr;
+    }
   }
 
-  .description {
-    width: min(860px, 92vw);
-    padding: 20px 0 28px;
-    text-align: center;
-    color: #d9d9d9;
+  @media (max-aspect-ratio: 3/4) {
+    .ruby-svg {
+      width: min(86vmin, 88vw);
+    }
+    .bg-glow::before {
+      width: min(92vmin, 96vw);
+      height: min(64vmin, 70vh);
+    }
   }
-  .description h1 {
-    margin: 0 0 8px;
-    font-size: clamp(18px, 2.6vmin, 28px);
-    font-weight: 700;
-    letter-spacing: .2px;
-  }
-  .description p {
-    margin: 0 auto;
-    font-size: clamp(14px, 2vmin, 18px);
-    opacity: .9;
+
+  @media (min-aspect-ratio: 16/9) {
+    .ruby-svg {
+      width: min(60vmin, 50vh);
+    }
+    .bg-glow::before {
+      width: min(62vmin, 52vh);
+      height: min(38vmin, 34vh);
+    }
   }
 </style>
 </head>
 <body>
 
-<div class="viewport">
+<!-- Navegação -->
+<nav>
+  <ul>
+    <li><a href="#home">Início</a></li>
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#projetos">Projetos</a></li>
+    <li><a href="#habilidades">Habilidades</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+</nav>
 
-    <!--<div class="bg-glow"></div>-->
-    <div class="scan"><div></div></div>
+<!-- Hero Section -->
+<section id="home" class="hero">
+  <div class="bg-glow"></div>
+  <div class="scan"><div></div></div>
+  
+  <div class="spark"></div>
+  <div class="spark s2"></div>
+  <div class="spark s3"></div>
 
-    <!-- Faíscas (remova se não quiser) -->
-    <div class="spark"></div>
-    <div class="spark s2"></div>
-    <div class="spark s3"></div>
+  <svg class="ruby-svg" viewBox="0 0 769 768" xmlns="http://www.w3.org/2000/svg" aria-label="Ruby logo">
+    <defs>
+      <linearGradient id="gBody" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#D61E16"/>
+        <stop offset="48%" stop-color="#B31513"/>
+        <stop offset="100%" stop-color="#6B0D0B"/>
+      </linearGradient>
+      <linearGradient id="gMid" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#E33A2E"/>
+        <stop offset="100%" stop-color="#A61613"/>
+      </linearGradient>
+      <linearGradient id="gDark" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#8F1914"/>
+        <stop offset="100%" stop-color="#3D0B09"/>
+      </linearGradient>
+    </defs>
 
-    <!-- SVG do rubi. viewBox preserva a proporção do original -->
-    <svg class="ruby-svg" viewBox="0 0 769 768" xmlns="http://www.w3.org/2000/svg" aria-label="Ruby logo">
-        <defs>
-        <linearGradient id="gBody" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%"  stop-color="#D61E16"/>
-            <stop offset="48%" stop-color="#B31513"/>
-            <stop offset="100%" stop-color="#6B0D0B"/>
-        </linearGradient>
-        <linearGradient id="gMid" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%"  stop-color="#E33A2E"/>
-            <stop offset="100%" stop-color="#A61613"/>
-        </linearGradient>
-        <linearGradient id="gDark" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%"  stop-color="#8F1914"/>
-            <stop offset="100%" stop-color="#3D0B09"/>
-        </linearGradient>
-        </defs>
+    <path fill="url(#gBody)" d="M431 0l225 4c29 5 55 15 79 30 43 27 69 70 77 126 3 22 3 45 0 69l-33 285-24 236-1 1-1 1-1-1-220-2-370 18c-63-4-108-24-136-60-27-35-41-86-42-153l8-164-2-7 91-175 168-158L431 0z"/>
+    <path fill="url(#gDark)" opacity=".35" d="M578 35c73-35 134-36 181-2 47 34 64 97 53 188-9 74-37 151-84 233-74 127-189 226-346 297l308 16 57-3 24-236 33-285c3-24 3-47 0-69-8-56-34-99-77-126-35-22-79-33-133-33-5 0-10 0-16 1z"/>
+    <path fill="#fff" d="M544 86L318 283c-111 106-214 163-309 168l-5-10c-19-51-16-104 9-160l92-175c146-144 314-198 402-145 79 47 50 194-105 366l-155 144 42-167 255-218z"/>
+    <path fill="#B51912" d="M129 410c76 0 198-62 309-177 89-91 132-183 116-249-8-36-29-60-62-77-80-41-226 12-346 150L54 274c-28 60-30 116 2 156 18 22 44 33 73 33z"/>
+    <path fill="#fff" opacity=".85" d="M544 86l204 171-265 13 61-184z"/>
+    <path fill="#fff" opacity=".5" d="M318 283l-72 289-110-254c84-3 182-56 289-173l-107 138z"/>
+    <path fill="url(#gMid)" opacity=".95" d="M250 473l292 97-144 131-148-228z"/>
+    <path fill="url(#gDark)" opacity=".9" d="M542 570l174-197 43 347-217-150z"/>
+    <path fill="url(#gMid)" opacity=".9" d="M250 473l-93 290-69-194 162-96z"/>
+    <path fill="url(#gMid)" opacity=".8" d="M544 86l-61 184 39 172 186-198-164-158z"/>
+    <path fill="url(#gDark)" opacity=".8" d="M318 283l-68 190c120 164 308 63 478-188l-293 17c-46 44-86 68-117 71z"/>
+  </svg>
 
-        <!-- Corpo principal -->
-        <path fill="url(#gBody)" d="M431 0l225 4c29 5 55 15 79 30 43 27 69 70 77 126 3 22 3 45 0 69l-33 285-24 236-1 1-1 1-1-1-220-2-370 18c-63-4-108-24-136-60-27-35-41-86-42-153l8-164-2-7 91-175 168-158L431 0z"/>
-        <!-- Banda escura direita -->
-        <path fill="url(#gDark)" opacity=".35" d="M578 35c73-35 134-36 181-2 47 34 64 97 53 188-9 74-37 151-84 233-74 127-189 226-346 297l308 16 57-3 24-236 33-285c3-24 3-47 0-69-8-56-34-99-77-126-35-22-79-33-133-33-5 0-10 0-16 1z"/>
-        <!-- Borda/corte branco -->
-        <path fill="#fff" d="M544 86L318 283c-111 106-214 163-309 168l-5-10c-19-51-16-104 9-160l92-175c146-144 314-198 402-145 79 47 50 194-105 366l-155 144 42-167 255-218z"/>
-        <!-- Mesa elíptica -->
-        <path fill="#B51912" d="M129 410c76 0 198-62 309-177 89-91 132-183 116-249-8-36-29-60-62-77-80-41-226 12-346 150L54 274c-28 60-30 116 2 156 18 22 44 33 73 33z"/>
-        <!-- Brilhos brancos principais -->
-        <path fill="#fff" opacity=".85" d="M544 86l204 171-265 13 61-184z"/>
-        <path fill="#fff" opacity=".5" d="M318 283l-72 289-110-254c84-3 182-56 289-173l-107 138z"/>
-        <!-- Facetas -->
-        <path fill="url(#gMid)" opacity=".95" d="M250 473l292 97-144 131-148-228z"/>
-        <path fill="url(#gDark)" opacity=".9" d="M542 570l174-197 43 347-217-150z"/>
-        <path fill="url(#gMid)" opacity=".9" d="M250 473l-93 290-69-194 162-96z"/>
-        <path fill="url(#gMid)" opacity=".8" d="M544 86l-61 184 39 172 186-198-164-158z"/>
-        <path fill="url(#gDark)" opacity=".8" d="M318 283l-68 190c120 164 308 63 478-188l-293 17c-46 44-86 68-117 71z"/>
-    </svg>
-
-    <!-- Descrição abaixo do SVG -->
-  <div class="description">
-    <h1>Ruby on Rails</h1>
-    <p>
-      Escreva aqui a sua descrição. Exemplo: “Rubi estilizado com animações dinâmicas,
-      responsivo a qualquer tamanho de tela. Ideal para hero sections, apresentações
-      e landing pages.”
-    </p>
+  <div class="hero-content">
+    <h1>Ruby Developer</h1>
+    <p>Transformando ideias em código elegante</p>
+    <a href="#contato" class="cta-button">Entre em Contato</a>
   </div>
- </div>
+</section>
 
+<!-- Sobre Mim -->
+<section id="sobre">
+  <h2>Sobre Mim</h2>
+  <div class="about-content">
+    <div class="about-image">👨‍💻</div>
+    <div class="about-text">
+      <p>
+        Olá! Sou um desenvolvedor apaixonado por Ruby e Ruby on Rails, com experiência em criar aplicações web robustas e escaláveis. 
+        Minha jornada na programação começou há X anos, e desde então tenho me dedicado a escrever código limpo e eficiente.
+      </p>
+      <p>
+        Acro que a tecnologia deve ser uma ferramenta para resolver problemas reais e melhorar a vida das pessoas. 
+        Estou sempre em busca de novos desafios e oportunidades para aprender e crescer profissionalmente.
+      </p>
+      <p>
+        Quando não estou programando, gosto de contribuir com projetos open source, ler sobre novas tecnologias e compartilhar conhecimento com a comunidade.
+      </p>
+    </div>
+  </div>
+</section>
 
+<!-- Projetos -->
+<section id="projetos">
+  <h2>Meus Projetos</h2>
+  <div class="projects-grid">
+    
+    <div class="project-card">
+      <div class="project-icon">🚀</div>
+      <h3>E-commerce Platform</h3>
+      <p>Plataforma completa de e-commerce desenvolvida com Ruby on Rails, incluindo sistema de pagamentos, gestão de estoque e painel administrativo.</p>
+      <div class="project-tags">
+        <span class="tag">Ruby on Rails</span>
+        <span class="tag">PostgreSQL</span>
+        <span class="tag">Stripe</span>
+        <span class="tag">Redis</span>
+      </div>
+      <div class="project-links">
+        <a href="#" class="project-link">Ver Demo</a>
+        <a href="#" class="project-link">GitHub</a>
+      </div>
+    </div>
 
+    <div class="project-card">
+      <div class="project-icon">📱</div>
+      <h3>API RESTful</h3>
+      <p>API robusta para aplicações mobile, com autenticação JWT, documentação Swagger e testes automatizados completos.</p>
+      <div class="project-tags">
+        <span class="tag">Ruby</span>
+        <span class="tag">Sinatra</span>
+        <span class="tag">JWT</span>
+        <span class="tag">RSpec</span>
+      </div>
+      <div class="project-links">
+        <a href="#" class="project-link">Ver Demo</a>
+        <a href="#" class="project-link">GitHub</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-icon">📊</div>
+      <h3>Dashboard Analytics</h3>
+      <p>Sistema de análise de dados em tempo real com visualizações interativas e relatórios personalizáveis para tomada de decisões.</p>
+      <div class="project-tags">
+        <span class="tag">Rails</span>
+        <span class="tag">Chart.js</span>
+        <span class="tag">Sidekiq</span>
+        <span class="tag">WebSocket</span>
+      </div>
+      <div class="project-links">
+        <a href="#" class="project-link">Ver Demo</a>
+        <a href="#" class="project-link">GitHub</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-icon">🎓</div>
+      <h3>Learning Management System</h3>
+      <p>Plataforma de ensino online com gestão de cursos, aulas em vídeo, quizzes interativos e sistema de certificados.</p>
+      <div class="project-tags">
+        <span class="tag">Ruby on Rails</span>
+        <span class="tag">Active Storage</span>
+        <span class="tag">Action Cable</span>
+        <span class="tag">Tailwind</span>
+      </div>
+      <div class="project-links">
+        <a href="#" class="project-link">Ver Demo</a>
+        <a href="#" class="project-link">GitHub</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-icon">🔐</div>
+      <h3>Authentication Service</h3>
+      <p>Microserviço de autenticação com OAuth2, autenticação de dois fatores e integração com provedores sociais.</p>
+      <div class="project-tags">
+        <span class="tag">Ruby</span>
+        <span class="tag">OAuth2</span>
+        <span class="tag">2FA</span>
+        <span class="tag">Docker</span>
+      </div>
+      <div class="project-links">
+        <a href="#" class="project-link">Ver Demo</a>
+        <a href="#" class="project-link">GitHub</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-icon">💬</div>
+      <h3>Chat Application</h3>
+      <p>Aplicação de chat em tempo real com salas privadas, compartilhamento de arquivos e notificações push.</p>
+      <div class="project-tags">
+        <span class="tag">Rails</span>
+        <span class="tag">Action Cable</span>
+        <span class="tag">Redis</span>
+        <span class="tag">Stimulus</span>
+      </div>
+      <div class="project-links">
+        <a href="#" class="project-link">Ver Demo</a>
+        <a href="#" class="project-link">GitHub</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Habilidades -->
+<section id="habilidades">
+  <h2>Habilidades</h2>
+  <div class="skills-grid">
+    
+    <div class="skill-category">
+      <h3>Backend</h3>
+      <div class="skill-item">
+        <div class="skill-name">
+          <span>Ruby on Rails</span>
+          <span>95%</span>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-progress" style="width: 95%"></div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name">
+          <span>Ruby</span>
+          <span>90%</span>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-progress" style="width: 90%"></div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name">
+          <span>PostgreSQL</span>
+          <span>85%</span>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-progress" style="width: 85%"></div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name">
+          <span>Redis</span>
+          <span>80%</span>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-progress" style="width: 80%"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="skill-category">
+      <h3>Frontend</h3>
+      <div class="skill-item">
+        <div class="skill-name">
+          <span>HTML/CSS</span>
+          <span>90%</span>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-progress" style="width: 90%"></div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name">
+          <span>JavaScript</span>
+          <span>85%</span>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-progress" style="width: 85%"></div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name">
+          <span>Stimulus/Hotwire</span>
+          <span>80%</span>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-progress" style="width: 80%"></div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name">
+          <span>Tailwind CSS</span>
+          <span>85%</span>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-progress" style="width: 85%"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="skill-category">
+      <h3>DevOps & Tools</h3>
+      <div class="skill-item">
+        <div class="skill-name">
+          <span>Git/GitHub</span>
+          <span>90%</span>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-progress" style="width: 90%"></div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name">
+          <span>Docker</span>
+          <span>75%</span>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-progress" style="width: 75%"></div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name">
+          <span>CI/CD</span>
+          <span>70%</span>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-progress" style="width: 70%"></div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name">
+          <span>AWS</span>
+          <span>65%</span>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-progress" style="width: 65%"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="skill-category">
+      <h3>Outros</h3>
+      <div class="skill-item">
+        <div class="skill-name">
+          <span>RSpec/Testing</span>
+          <span>85%</span>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-progress" style="width: 85%"></div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name">
+          <span>API Design</span>
+          <span>90%</span>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-progress" style="width: 90%"></div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name">
+          <span>Agile/Scrum</span>
+          <span>80%</span>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-progress" style="width: 80%"></div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name">
+          <span>GraphQL</span>
+          <span>70%</span>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-progress" style="width: 70%"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Contato -->
+<section id="contato">
+  <h2>Entre em Contato</h2>
+  <div class="contact-container">
+    
+    <div class="contact-info">
+      <div class="contact-item">
+        <div class="contact-icon">📧</div>
+        <div class="contact-details">
+          <h3>Email</h3>
+          <p><a href="mailto:seu@email.com">seu@email.com</a></p>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-icon">📱</div>
+        <div class="contact-details">
+          <h3>Telefone</h3>
+          <p><a href="tel:+5511999999999">+55 (11) 99999-9999</a></p>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div class="contact-details">
+          <h3>Localização</h3>
+          <p>São Paulo, Brasil</p>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-icon">💼</div>
+        <div class="contact-details">
+          <h3>LinkedIn</h3>
+          <p><a href="https://linkedin.com/in/seu-perfil" target="_blank">linkedin.com/in/seu-perfil</a></p>
+        </div>
+      </div>
+    </div>
+
+    <form class="contact-form" onsubmit="handleSubmit(event)">
+      <div class="form-group">
+        <label for="name">Nome</label>
+        <input type="text" id="name" name="name" required placeholder="Seu nome completo">
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required placeholder="seu@email.com">
+      </div>
+
+      <div class="form-group">
+        <label for="subject">Assunto</label>
+        <input type="text" id="subject" name="subject" required placeholder="Assunto da mensagem">
+      </div>
+
+      <div class="form-group">
+        <label for="message">Mensagem</label>
+        <textarea id="message" name="message" required placeholder="Escreva sua mensagem aqui..."></textarea>
+      </div>
+
+      <button type="submit" class="submit-button">Enviar Mensagem</button>
+    </form>
+
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="social-links">
+    <a href="https://github.com/seu-usuario" target="_blank" class="social-link" title="GitHub">
+      <span>🐙</span>
+    </a>
+    <a href="https://linkedin.com/in/seu-perfil" target="_blank" class="social-link" title="LinkedIn">
+      <span>💼</span>
+    </a>
+    <a href="https://twitter.com/seu-usuario" target="_blank" class="social-link" title="Twitter">
+      <span>🐦</span>
+    </a>
+    <a href="mailto:seu@email.com" class="social-link" title="Email">
+      <span>📧</span>
+    </a>
+  </div>
+  <p>&copy; 2024 Ruby Developer Portfolio. Todos os direitos reservados.</p>
+</footer>
+
+<script>
+  // Animação das barras de habilidade ao entrar na viewport
+  const observerOptions = {
+    threshold: 0.5
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const progressBars = entry.target.querySelectorAll('.skill-progress');
+        progressBars.forEach(bar => {
+          bar.style.width = bar.parentElement.previousElementSibling.querySelector('span:last-child').textContent;
+        });
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.skill-category').forEach(category => {
+    observer.observe(category);
+  });
+
+  // Handler do formulário
+  function handleSubmit(event) {
+    event.preventDefault();
+    
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData);
+    
+    // Aqui você pode adicionar a lógica para enviar o formulário
+    // Por exemplo, usando fetch para uma API
+    console.log('Dados do formulário:', data);
+    
+    alert('Mensagem enviada com sucesso! Entrarei em contato em breve.');
+    event.target.reset();
+  }
+
+  // Smooth scroll para navegação
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    });
+  });
+</script>
 
 </body>
 </html>
