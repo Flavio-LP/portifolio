@@ -269,6 +269,10 @@
     padding: 2rem;
     transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
 
   .project-card:hover {
@@ -304,6 +308,8 @@
   .project-tags {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    align-self: stretch;
     gap: 0.5rem;
     margin-bottom: 1.5rem;
   }
@@ -319,7 +325,9 @@
 
   .project-links {
     display: flex;
+    justify-content: center;
     gap: 1rem;
+    margin-top: auto;
   }
 
   .project-link {
